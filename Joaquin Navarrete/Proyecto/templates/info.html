@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ titulo }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'estilo.css' %}">
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-light p-3 mb-4">
+        <div class="container d-flex justify-content-between align-items-center">
+            <img src="{% static 'images/logo.png' %}" alt="Logo de la Empresa" class="logo">
+            <h1 class="text-primary">Nombre de la Empresa</h1>
+            <p class="mb-0">Teléfono: (123) 456-7890</p>
+        </div>
+    </header>
+
+    <div class="container mt-5">
+        <!-- Botón de Volver -->
+        <a href="{% url 'index' %}" class="btn btn-primary mb-3 animate-button">Volver</a>
+
+        <!-- Título de la sección -->
+        <div class="alert alert-info text-center">{{ titulo }}</div>
+
+        <!-- Contenido de la información -->
+        <div class="row">
+            {% for item in info %}
+                <div class="col-md-4 mb-4">
+                    <div class="card {% if titulo == 'Instructores' %}card-blue{% elif titulo == 'Cursos' %}card-red{% elif titulo == 'Egresados' %}card-purple{% endif %}">
+                        <img src="{% static item.imagen %}" class="card-img-top" alt="{{ item.Nombre }}">
+                        <div class="card-body show-content">
+                            <h5 class="card-title">{{ item.Nombre }}</h5>
+                            {% if item.Especialidad %}
+                                <p class="card-text"><strong>Especialidad:</strong> {{ item.Especialidad }}</p>
+                            {% elif item.Duracion %}
+                                <p class="card-text"><strong>Duración:</strong> {{ item.Duracion }}</p>
+                                <p class="card-text"><strong>Reseña:</strong> {{ item.Reseña }}</p>
+                            {% elif item.Nombre_de_la_empresa %}
+                                <p class="card-text"><strong>Empresa:</strong> {{ item.Nombre_de_la_empresa }}</p>
+                                <p class="card-text"><strong>Opinión:</strong> {{ item.Opinion }}</p>
+                            {% endif %}
+                            <p class="card-text">{{ item.Descripcion }}</p>
+                            <img src="{% static item.imagen2 %}" class="card-img-bottom" alt="{{ item.Nombre }}">
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p class="text-center">No hay información disponible.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light text-center p-3 mt-5">
+        <div class="container">
+            <p>Síguenos en:</p>
+            <a href="https://facebook.com" class="text-light me-2">Facebook</a>
+            <a href="https://twitter.com" class="text-light me-2">Twitter</a>
+            <a href="https://instagram.com" class="text-light">Instagram</a>
+            <div>
+                <p>Correo: contacto@empresa.com</p>
+                <p>Dirección: Calle Falsa 123, Ciudad, País</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script para animación de contenido -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.card-body');
+            cards.forEach(card => {
+                card.classList.add('show-content');
+            });
+        });
+    </script>
+</body>
+</html>

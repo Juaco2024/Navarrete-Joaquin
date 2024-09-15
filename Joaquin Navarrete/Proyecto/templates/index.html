@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Django</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'estilo.css' %}">
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-light p-3 mb-4">
+        <div class="container d-flex justify-content-between align-items-center">
+            <img src="{% static 'images/logo.png' %}" alt="Logo de la Empresa" class="logo">
+            <h1 class="text-primary">Empresa</h1>
+            <p class="mb-0">Teléfono: +596 6633 7254</p>
+        </div>
+    </header>
+
+    <div class="container mt-5">
+        <div class="alert alert-info display-1 text-center">Capacitación</div>
+        <div class="alert alert-dark display-3 text-center">Bienvenido</div>
+        
+        <!-- Botones de navegación -->
+        <div class="text-center mt-4">
+            <a href="{% url 'instructores' %}" class="btn btn-primary mx-2 animate-button">Instructores</a>
+            <a href="{% url 'cursos' %}" class="btn btn-primary mx-2 animate-button">Cursos</a>
+            <a href="{% url 'egresados' %}" class="btn btn-primary mx-2 animate-button">Egresados</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light text-center p-3 mt-5">
+        <div class="container">
+            <p>Síguenos en:</p>
+            <a href="https://facebook.com" class="text-light me-2">Facebook</a>
+            <a href="https://twitter.com" class="text-light me-2">Twitter</a>
+            <a href="https://instagram.com" class="text-light">Instagram</a>
+            <div>
+                <p>Correo: contacto@empresa.com</p>
+                <p>Dirección: Calle Falsa 123, Ciudad, País</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
